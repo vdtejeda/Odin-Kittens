@@ -1,0 +1,27 @@
+= form_for @kitten do |f|
+  - if @kitten.errors.any?
+    %h4= "Please fix the following #{pluralize(@kitten.errors.count, 'error')}."
+    %ul
+  - @kitten.errors.full_messages.each do |message|
+    %li= message
+
+  %div
+    %p
+      = f.label :name
+      %br/
+      = f.text_field :name
+      %br/
+    = f.label :age
+    %br/
+    = f.number_field :age
+    %br/
+    = f.label :cuteness, 'Cuteness (1-10)'
+    %br/
+    = f.number_field :cuteness, in: 1..10
+    %br/
+    = f.label :softness, 'Softness (1-10)'
+    %br/
+    = f.number_field :softness, in: 1..10
+    %br/
+    %br/
+    = f.submit
